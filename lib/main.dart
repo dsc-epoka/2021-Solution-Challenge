@@ -1,17 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:social_albania/Setup/SignIn.dart';
 import 'news.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
       MaterialApp(
+
         title:"Social Albania",
-        home: MyApp()
+        theme: ThemeData (
+              primarySwatch: Colors.orange,
+      ),
+        home: LoginPage(),
+
+
+
+
       )
   );
 }
-
 List <news> currentNews=[
   news("Higher education crisis", "Higher education still is suffering from remote studying.", 15, 12),
   news("Local Businesses automation", "E-Commerce is getting more attention.", 36, 12),
@@ -54,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       onRefresh: () async {
         refreshNews();
         setState(() {
-          
+
         });
       },
       child: Scaffold(
@@ -120,9 +132,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
-
-
 class descriptionPage extends StatelessWidget{
   news mainNews;
 
@@ -133,9 +142,9 @@ class descriptionPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-          appBar: AppBar(title: Center(child: Text(mainNews.title))),
-          body: Text(mainNews.description),
-      );
+      appBar: AppBar(title: Center(child: Text(mainNews.title))),
+      body: Text(mainNews.description),
+    );
   }
 }
 
