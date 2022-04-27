@@ -2,4 +2,4 @@
 
 Social Application for Albania's citizens to discuss problems they face.
 
-DSC
+DSC 2020
